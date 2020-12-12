@@ -4,6 +4,9 @@ on:
   push:
     branches:
       - master
+  pull_request:
+    branches: [master]
+    types: [opened, synchronize] # limit trigger to events `open` and `update`
 
 jobs:
   simple_deployment_pipeline:
