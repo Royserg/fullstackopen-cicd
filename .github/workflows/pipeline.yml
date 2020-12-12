@@ -38,6 +38,13 @@ jobs:
           wait-on: http://localhost:5000
 
       - name: <Deployment>!
-        if: ${{ github.event_name == 'push' }}
+        if: ${{ github.event_name == 'push' }} # runs only when change is pushed to master
         run: |
           echo "Running deployment step!!!"
+
+      - name: Bump version and push tag
+        if: ${{ github.event_name == 'push' }}
+        uses: anothrNick/github-tag-action@1.33.0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          DEFAULT_BUMP: patch
