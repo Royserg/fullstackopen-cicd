@@ -38,7 +38,6 @@ jobs:
           command: npm run test:e2e
           start: npm run start-prod
           wait-on: http://localhost:5000
-          # env: ACTIONS_ALLOW_UNSECURE_COMMANDS=true
 
       - name: <Deployment>!
         if: ${{ github.event_name == 'push' }} # runs only when change is pushed to master
@@ -50,6 +49,4 @@ jobs:
         uses: anothrNick/github-tag-action@1.33.0
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          # WITH_V: true
           DEFAULT_BUMP: patch
-          # DRY_RUN: true
